@@ -1,0 +1,7 @@
+*.png binary
+*.jpeg binary
+*.jpg binary
+*.sdf binary
+.gitignore crlf=input
+.gitattributes crlf=input
+.gitmodules crlf=input

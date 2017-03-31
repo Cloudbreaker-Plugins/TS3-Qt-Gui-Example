@@ -1,0 +1,17 @@
+# Visual Studio Cache
+.vs/
+/*.VC.db
+/*.VC.VC.opendb
+
+# Visual Studio Files
+*.opensdf
+*.aps
+*.sdf
+*.suo
+*.user
+
+# Visual Studio Generated Files / Build Directories
+.vsbld/
+*/.vsgen/
+x64/
+x86/
