@@ -13,15 +13,39 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{c9fc978c-5d58-4762-bd8d-d97d213a103b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User Interface">
+      <UniqueIdentifier>{fc30c23f-205f-4bc3-bebc-35f363214583}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="plugin.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include=".vsgen\config_moc.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="plugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include=".vsgen\ui_configui.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="ui\configui.ui">
+      <Filter>User Interface</Filter>
+    </CustomBuild>
+    <CustomBuild Include="config.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

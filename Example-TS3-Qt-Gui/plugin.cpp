@@ -21,7 +21,12 @@ static char* pluginID = nullptr;
 #endif
 
 
- /* Unique name identifying this plugin */
+#include "config.h"
+config* pConf = nullptr;
+
+
+
+/* Unique name identifying this plugin */
 const char* ts3plugin_name() {
 	return "Qt5 GUI Demo Plugin";
 }
@@ -63,6 +68,12 @@ int ts3plugin_init() {
 
 /* Custom code called right before the plugin is unloaded */
 void ts3plugin_shutdown() {
+	if (pConf) {
+		pConf->close();
+		delete pConf;
+		pConf = nullptr;
+	}
+
 	/* Free pluginID if we registered it */
 	if (pluginID) {
 		free(pluginID);
@@ -71,11 +82,26 @@ void ts3plugin_shutdown() {
 }
 
 int ts3plugin_offersConfigure() {
-	return PLUGIN_OFFERS_NO_CONFIGURE;
+	return PLUGIN_OFFERS_CONFIGURE_QT_THREAD;
 }
 
 /* Plugin might offer a configuration window. If ts3plugin_offersConfigure returns 0, this function does not need to be implemented. */
 void ts3plugin_configure(void* handle, void* qParentWidget) {
+	if (pConf == nullptr) {
+		char path[128];
+		ts3.getConfigPath(path, 128);
+		// Can use the qParentWidget pointer here, to make whatever window the client deems appropriate the parent of our config dialog
+		//pConf = new config(QString::fromUtf8(path), static_cast<QWidget*>(qParentWidget));
+		// or just ignore it and create it without a parent.
+		pConf = new config(QString::fromUtf8(path));
+	}
+	if (pConf->isVisible()) {
+		// Window is already displayed somewhere, bring it to the top and give it focus
+		pConf->raise();
+		pConf->activateWindow();
+	} else {
+		pConf->show();
+	}
 }
 
 /*
@@ -96,6 +122,13 @@ const char* ts3plugin_commandKeyword() {
 
 /* Plugin processes console command. Return 0 if plugin handled the command, 1 if not handled. */
 int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* command) {
+	auto params = QString::fromUtf8(command).split(" ");
+
+	if (params.at(0) == "config") {
+		ts3plugin_configure(nullptr, nullptr);
+		return 0;
+	}
+
 	return 1; /* Plugin did NOT handle command */
 }
 

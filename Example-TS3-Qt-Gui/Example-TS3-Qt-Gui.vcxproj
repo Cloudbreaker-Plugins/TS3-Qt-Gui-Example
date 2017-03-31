@@ -127,10 +127,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include=".vsgen\config_moc.cpp" />
+    <ClCompile Include="config.cpp" />
     <ClCompile Include="plugin.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include=".vsgen\ui_configui.h" />
+    <CustomBuild Include="config.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QtPath)\bin\moc.exe %(Fullpath) -o $(ProjectDir).vsgen\%(Filename)_moc.cpp</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir).vsgen\%(Filename)_moc.cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QtPath)\bin\moc.exe %(Fullpath) -o $(ProjectDir).vsgen\%(Filename)_moc.cpp</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir).vsgen\%(Filename)_moc.cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QtPath)\bin\moc.exe %(Fullpath) -o $(ProjectDir).vsgen\%(Filename)_moc.cpp</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir).vsgen\%(Filename)_moc.cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QtPath)\bin\moc.exe %(Fullpath) -o $(ProjectDir).vsgen\%(Filename)_moc.cpp</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir).vsgen\%(Filename)_moc.cpp</Outputs>
+    </CustomBuild>
     <ClInclude Include="plugin.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="ui\configui.ui">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QtPath)\bin\uic.exe %(Fullpath) -o $(ProjectDir).vsgen\ui_%(Filename).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir).vsgen\ui_%(Filename).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QtPath)\bin\uic.exe %(Fullpath) -o $(ProjectDir).vsgen\ui_%(Filename).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir).vsgen\ui_%(Filename).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QtPath)\bin\uic.exe %(Fullpath) -o $(ProjectDir).vsgen\ui_%(Filename).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir).vsgen\ui_%(Filename).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QtPath)\bin\uic.exe %(Fullpath) -o $(ProjectDir).vsgen\ui_%(Filename).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir).vsgen\ui_%(Filename).h</Outputs>
+    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
