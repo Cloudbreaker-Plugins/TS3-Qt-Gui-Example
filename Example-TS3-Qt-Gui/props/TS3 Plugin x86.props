@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup Label="UserMacros">
+		<ShortPlatform>x86</ShortPlatform>
+	</PropertyGroup>
+	<PropertyGroup>
+		<TargetName>$(ProjectName)_win32</TargetName>
+		<OutDir>$(SolutionDir)x86\$(Configuration)\</OutDir>
+	</PropertyGroup>
+</Project>

@@ -1,0 +1,3 @@
+[submodule "Example-TS3-Qt-Gui/sdk"]
+	path = Example-TS3-Qt-Gui/sdk
+	url = https://github.com/svenpaulsen/ts3client-pluginsdk
