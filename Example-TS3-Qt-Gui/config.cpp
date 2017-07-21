@@ -1,11 +1,13 @@
 ﻿#include "config.h"
-#include ".vsgen/ui_configui.h"
+#include "ui_configui.h"
 
 
 
-config::config(const QString& configLocation, QWidget* parent /* = 0 */) : QDialog(parent), m_ui(new Ui::configui), m_settings(nullptr) {
+config::config(const QString& configLocation, QWidget* parent /* = nullptr */) : QDialog(parent),
+	m_ui(std::make_unique<Ui::configui>()),
+	m_settings(std::make_unique<QSettings>(configLocation + "/QtGuiDemo.ini", QSettings::IniFormat, this))
+{
 	m_ui->setupUi(this);
-	m_settings = new QSettings(configLocation + "/QtGuiDemo.ini", QSettings::IniFormat, this);
 
 	setWindowTitle("Qt-GUI Demo :: Config");
 
@@ -23,8 +25,6 @@ config::config(const QString& configLocation, QWidget* parent /* = 0 */) : QDial
 
 config::~config() {
 	m_settings->sync();
-	delete m_settings;
-	delete m_ui;
 }
 
 

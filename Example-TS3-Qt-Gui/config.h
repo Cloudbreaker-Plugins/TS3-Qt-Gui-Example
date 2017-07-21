@@ -3,6 +3,7 @@
 #pragma comment (lib, "Qt5Widgets")
 #pragma comment (lib, "Qt5Core")
 #include <QtCore/QSettings>
+#include <memory>
 
 namespace Ui {
 	class configui;
@@ -12,7 +13,7 @@ class config : public QDialog
 {
 	Q_OBJECT
 public:
-	config(const QString& configLocation, QWidget *parent = 0);
+	config(const QString& configLocation, QWidget *parent = nullptr);
 	~config();
 	config(const config& other) = delete;
 	config& operator=(const config& other) = delete;
@@ -24,8 +25,8 @@ protected:
 	void showEvent(QShowEvent* e) override;
 
 private:
-	Ui::configui* m_ui;
-	QSettings* m_settings;
+	std::unique_ptr<Ui::configui> m_ui;
+	std::unique_ptr<QSettings> m_settings;
 
 	void saveSettings();
 	void loadSettings();

@@ -122,7 +122,7 @@ const char* ts3plugin_commandKeyword() {
 
 /* Plugin processes console command. Return 0 if plugin handled the command, 1 if not handled. */
 int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* command) {
-	auto params = QString::fromUtf8(command).split(" ");
+	const auto params = QString::fromUtf8(command).split(" ");
 
 	if (params.at(0) == "config") {
 		ts3plugin_configure(nullptr, nullptr);
